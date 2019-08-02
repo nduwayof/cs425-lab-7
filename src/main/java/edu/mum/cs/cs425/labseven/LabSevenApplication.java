@@ -14,6 +14,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The type Lab seven application.
+ * @author nduwayofabrice
+ */
 @SpringBootApplication
 public class LabSevenApplication implements CommandLineRunner {
 
@@ -23,6 +27,13 @@ public class LabSevenApplication implements CommandLineRunner {
     private IClassRoomRepository classRoomRepository;
     private IStudentRepository studentRepository;
 
+    /**
+     * Instantiates a new Lab seven application.
+     *
+     * @param transcriptRepository the transcript repository
+     * @param classRoomRepository  the class room repository
+     * @param studentRepository    the student repository
+     */
     @Autowired
     public LabSevenApplication(ITranscriptRepository transcriptRepository,
                                IClassRoomRepository classRoomRepository,
@@ -32,6 +43,11 @@ public class LabSevenApplication implements CommandLineRunner {
         this.studentRepository = studentRepository;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         SpringApplication.run(LabSevenApplication.class, args);
     }
@@ -46,25 +62,51 @@ public class LabSevenApplication implements CommandLineRunner {
         LOGGER.log(Level.INFO,trans.toString(), data);
 
         ClassRoom classRoom = new ClassRoom("McLaughlin building", "M105");
+
+        Student student1 = new Student("000-61-0001", "Fabrice","Nduwayo", trans);
+        Student student2 = new Student("000-61-0002", "Brian","Bwengye", trans);
+        Student student3 = new Student("000-61-0003", "Robert","Rusarwa", trans);
+
+        classRoom.getStudents().add(student1);
+        classRoom.getStudents().add(student2);
+        classRoom.getStudents().add(student3);
         ClassRoom room = saveClassRoom(classRoom);
         LOGGER.log(Level.INFO,room.toString(), data);
 
-        Student student = new Student("000-61-0001", "Fabrice","Nduwayo", trans, room);
-        LOGGER.log(Level.INFO,saveStudent(student).toString(), data);
+
     }
 
+    /**
+     * Save transcript transcript.
+     *
+     * @param transcript the transcript
+     *
+     * @return the transcript
+     */
     Transcript saveTranscript(Transcript transcript){
         return this.transcriptRepository.save(transcript);
     }
 
+    /**
+     * Save class room class room.
+     *
+     * @param classRoom the class room
+     *
+     * @return the class room
+     */
     ClassRoom saveClassRoom(ClassRoom classRoom){
         return this.classRoomRepository.save(classRoom);
     }
 
+    /**
+     * Save student student.
+     *
+     * @param student the student
+     *
+     * @return the student
+     */
     Student saveStudent(Student student){
         return this.studentRepository.save(student);
     }
-
-
 
 }
