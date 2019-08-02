@@ -58,8 +58,8 @@ public class Student {
                 .add("lastName='" + lastName + "'")
                 .add("cgpa=" + cgpa)
                 .add("dateOfEnrollment=" + dateOfEnrollment)
-                .add("transcript=" + transcript)
-                .add("classRoom=" + classRoom)
+                .add("transcript=" + transcript.toString())
+                .add("classRoom=" + classRoom.toString())
                 .toString();
     }
 }

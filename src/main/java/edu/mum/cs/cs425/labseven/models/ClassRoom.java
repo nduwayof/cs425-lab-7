@@ -1,6 +1,7 @@
 package edu.mum.cs.cs425.labseven.models;
 
 import javax.persistence.*;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "CLASS_ROOMS")
@@ -20,5 +21,14 @@ public class ClassRoom {
     public ClassRoom(String buildingName, String roomNumber) {
         this.buildingName = buildingName;
         this.roomNumber = roomNumber;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", ClassRoom.class.getSimpleName() + "[", "]")
+                .add("classRoomId=" + classRoomId)
+                .add("buildingName='" + buildingName + "'")
+                .add("roomNumber='" + roomNumber + "'")
+                .toString();
     }
 }
