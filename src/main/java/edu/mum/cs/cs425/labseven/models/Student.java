@@ -34,7 +34,7 @@ public class Student {
     @OneToOne(fetch = FetchType.LAZY)
     private Transcript transcript;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private ClassRoom classRoom;
 
 
